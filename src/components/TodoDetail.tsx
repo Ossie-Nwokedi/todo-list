@@ -13,7 +13,7 @@ const TodoDetail: FunctionComponent<Props> = ({ todo }) => {
   const { toggle, remove, setTitle, setDescription } = useEditTodo(todo);
 
   if (!todo) {
-    return <span>click on a todo to see its details</span>;
+    return <span>Click on a todo to see its details</span>;
   }
 
   return (
