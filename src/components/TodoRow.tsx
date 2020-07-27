@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import { useDispatch } from "react-redux";
 
 import Todo from "../models/Todo";
