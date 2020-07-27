@@ -1,6 +1,7 @@
 import React, { useState, FunctionComponent } from "react";
-import Todo from "../models/Todo";
 import { useDispatch } from "react-redux";
+
+import Todo from "../models/Todo";
 import useEditTodo from "../hooks/useEditTodo";
 import { selectTodo } from "../Actions";
 
@@ -24,7 +25,8 @@ const TaskRow: FunctionComponent<Props> = ({ todo, isSelected }) => {
   const onClickTodo = (event: any) => {
     if (
       event.target !== checkBoxRef.current &&
-      event.target !== deleteButtonRef.current
+      event.target !== deleteButtonRef.current &&
+      !isSelected
     ) {
       dispatch(selectTodo(todo.id));
     }
@@ -44,7 +46,6 @@ const TaskRow: FunctionComponent<Props> = ({ todo, isSelected }) => {
       </button>
     </div>
   );
-  return null;
 };
 
 export default TaskRow;

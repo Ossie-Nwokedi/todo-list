@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+
 import Todo from "../models/Todo";
-import { toggleTodo, removeTodo } from "../Actions";
+import { toggleTodo, removeTodo, updateTodoTitle, updateTodoDescripton } from "../Actions";
 
 const useEditTodo = (todo: Todo) => {
   const dispatch = useDispatch();
@@ -11,11 +11,11 @@ const useEditTodo = (todo: Todo) => {
   };
 
   const setTitle = (todoTitle: string) => {
-    // TODO: dispatch edit event
+    dispatch(updateTodoTitle(todo.id, todoTitle));
   };
 
   const setDescription = (description: string) => {
-    // TODO: dispatch edit event
+    dispatch(updateTodoDescripton(todo.id, description));
   };
 
   const remove = () => {

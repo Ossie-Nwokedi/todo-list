@@ -1,4 +1,11 @@
-import { ADD_TODO, TOGGLE_TODO, SELECT_TODO, REMOVE_TODO } from "./Actions";
+import {
+  ADD_TODO,
+  TOGGLE_TODO,
+  SELECT_TODO,
+  REMOVE_TODO,
+  UPDATE_TODO_TITLE,
+  UPDATE_TODO_DESCRIPTION,
+} from "./Actions";
 import IState from "./models/IState";
 import Todo from "./models/Todo";
 
@@ -48,6 +55,44 @@ const reducer = (state: IState = initialState, action: any) => {
       if (index > -1) {
         const todos = [...state.todos];
         todos.splice(index, 1);
+        return {
+          ...state,
+          todos,
+        };
+      } else {
+        return state;
+      }
+    }
+
+    case UPDATE_TODO_TITLE: {
+      const index: number = state.todos.findIndex(
+        (todo) => todo.id === action.id
+      );
+
+      if (index > -1) {
+        const todo: Todo = state.todos[index];
+        const todos = [...state.todos];
+        todos[index] = { ...todo, title: action.title };
+
+        return {
+          ...state,
+          todos,
+        };
+      } else {
+        return state;
+      }
+    }
+
+    case UPDATE_TODO_DESCRIPTION: {
+      const index: number = state.todos.findIndex(
+        (todo) => todo.id === action.id
+      );
+
+      if (index > -1) {
+        const todo: Todo = state.todos[index];
+        const todos = [...state.todos];
+        todos[index] = { ...todo, description: action.description };
+
         return {
           ...state,
           todos,

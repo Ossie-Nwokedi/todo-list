@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { addTodo } from "../Actions";
 import { useDispatch } from "react-redux";
+
+import { addTodo } from "../Actions";
 
 const NewTaskBar = () => {
   const [title, setTitle] = useState("");

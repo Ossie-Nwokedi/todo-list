@@ -1,10 +1,10 @@
 import React, { ReactElement, FunctionComponent } from "react";
+import { connect } from "react-redux";
+
 import TodoStatusRow from "./TodoStatusRow";
 import TaskRow from "./TodoRow";
 import Todo from "../models/ITodo";
-import { connect } from "react-redux";
 import IState from "../models/IState";
-import { selectTodo } from "../Actions";
 
 type Props = {
   todos: Todo[];
@@ -15,10 +15,16 @@ const TodoList: FunctionComponent<Props> = ({ todos, selectedTodo }) => {
   const rows: Array<ReactElement> = [];
   let completed: any = null;
 
+
+  if (todos.length === 0){
+    return <span>Hurrah! You have nothing to do!</span>
+  }
+
   // sort by completed/uncompleted
   todos.sort((a, b) =>
     a.completed === b.completed ? 0 : a.completed ? 1 : -1
   );
+
   todos.forEach((todo) => {
     if (completed !== todo.completed) {
       completed = todo.completed;
