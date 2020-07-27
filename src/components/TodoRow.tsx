@@ -1,9 +1,23 @@
 import React, { FunctionComponent } from "react";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
 
 import Todo from "../models/Todo";
 import useEditTodo from "../hooks/useEditTodo";
 import { selectTodo } from "../Actions";
+import Checkbox from "./Checkbox";
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 5px 0 5px 0;
+`;
+
+const TitleInput = styled.input`
+  border: none;
+  flex: 1;
+  margin-left: 10px;
+`;
 
 type Props = {
   todo: Todo;
@@ -33,18 +47,13 @@ const TaskRow: FunctionComponent<Props> = ({ todo, isSelected }) => {
   };
 
   return (
-    <div onClick={onClickTodo}>
-      <input
-        ref={checkBoxRef}
-        type="checkbox"
-        checked={todo.completed}
-        onChange={toggle}
-      />
-      <input value={todo.title} onChange={onTitleChanged} />
+    <Container onClick={onClickTodo}>
+      <Checkbox ref={checkBoxRef} checked={todo.completed} onChange={toggle} />
+      <TitleInput value={todo.title} onChange={onTitleChanged} />
       <button ref={deleteButtonRef} onClick={remove}>
         X
       </button>
-    </div>
+    </Container>
   );
 };
 

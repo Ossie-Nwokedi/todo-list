@@ -18,6 +18,16 @@ const store = createStore(
 store.dispatch(addTodo("Buy Milk"));
 store.dispatch(addTodo("Call mum"));
 store.dispatch(addTodo("Interview prep"));
+store.dispatch(addTodo("Write proposal"));
+store.dispatch(addTodo("Complete unit tests"));
+store.dispatch(addTodo("Pack suitcase"));
+store.dispatch(addTodo("Create travel plan"));
+store.dispatch(addTodo("Wash clothes"));
+store.dispatch(addTodo("Help Bob with e2e tests"));
+store.dispatch(addTodo("Look up coding best practices"));
+
+
+
 store.dispatch(selectTodo(store.getState().todos[0].id));
 // store.dispatch(removeTodo(store.getState().todos[1].id));
 

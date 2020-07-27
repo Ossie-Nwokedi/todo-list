@@ -1,10 +1,17 @@
 import React, { ReactElement, FunctionComponent } from "react";
 import { connect } from "react-redux";
+import styled from "styled-components";
 
 import TodoStatusRow from "./TodoStatusRow";
 import TaskRow from "./TodoRow";
 import Todo from "../models/ITodo";
 import IState from "../models/IState";
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+`;
 
 type Props = {
   todos: Todo[];
@@ -15,9 +22,8 @@ const TodoList: FunctionComponent<Props> = ({ todos, selectedTodo }) => {
   const rows: Array<ReactElement> = [];
   let completed: any = null;
 
-
-  if (todos.length === 0){
-    return <span>Hurrah! You have nothing to do!</span>
+  if (todos.length === 0) {
+    return <span>Hurrah! You have nothing to do!</span>;
   }
 
   // sort by completed/uncompleted
@@ -28,7 +34,7 @@ const TodoList: FunctionComponent<Props> = ({ todos, selectedTodo }) => {
   todos.forEach((todo) => {
     if (completed !== todo.completed) {
       completed = todo.completed;
-      const status = completed ? "Completed" : "To Do";
+      const status = completed ? "Completed" : "To do";
       rows.push(<TodoStatusRow key={status} status={status} />);
     }
     rows.push(
@@ -40,7 +46,7 @@ const TodoList: FunctionComponent<Props> = ({ todos, selectedTodo }) => {
     );
   });
 
-  return <div>{rows}</div>;
+  return <Container>{rows}</Container>;
 };
 
 const mapState = (state: IState) => {

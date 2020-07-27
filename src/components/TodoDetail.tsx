@@ -1,9 +1,52 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useRef } from "react";
 import { connect } from "react-redux";
+import styled from "styled-components";
 
 import ITodo from "../models/ITodo";
 import IState from "../models/IState";
 import useEditTodo from "../hooks/useEditTodo";
+import Checkbox from "./Checkbox";
+
+const Container = styled.div`
+  height: 100%;
+  display: flex;
+  padding-top: 5px;
+  flex-flow: column;
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  align-content: center; 
+`;
+
+const TitleInput = styled.input`
+  margin-left: 10px;
+  padding: 0;
+  padding-left: 10px;
+  border: none;
+  border-left: 1px solid #969899;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+`;
+
+const DescriptionBox = styled.textarea`
+  border: none;
+  display: block;
+  width: 100%;
+  resize: none;
+  flex: 1;
+  font-family: "arial";
+  
+  ::placeholder {
+    color: #969899;
+    font-size: 14px;
+  }
+`;
+
+const DeleteButton = styled.button`
+  align-self: flex-end;
+`;
 
 type Props = {
   todo: ITodo | null;
@@ -32,19 +75,19 @@ const TodoDetail: FunctionComponent<Props> = ({ todo, numTodos }) => {
   }
 
   return (
-    <div>
-      <input type="checkbox" checked={todo.completed} onChange={toggle} />
-      <input value={todo.title} onChange={onTitleChange} />
+    <Container>
+      <TitleContainer>
+        <Checkbox checked={todo.completed} onChange={toggle} />
+        <TitleInput value={todo.title} onChange={onTitleChange} />
+      </TitleContainer>
 
-      <div>
-        <textarea
-          placeholder="Description"
-          value={todo.description}
-          onChange={onDescriptionChange}
-        />
-        <button onClick={remove}>X</button>
-      </div>
-    </div>
+      <DescriptionBox
+        placeholder="Description"
+        value={todo.description}
+        onChange={onDescriptionChange}
+      />
+      <DeleteButton onClick={remove}>X</DeleteButton>
+    </Container>
   );
 };
 
