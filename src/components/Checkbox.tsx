@@ -2,34 +2,32 @@ import React, { ChangeEventHandler, Ref } from "react";
 import styled from "styled-components";
 
 const StyledCheckbox = styled.div`
+  width: 15px;
+  height: 15px;
+  top: 0;
+  border: 1px solid #babcbc;
+  border-radius: 4px;
+  overflow:hidden;
+  box-sizing:border-box;
+
+  position: relative;
   input {
+    margin: 0;
     opacity: 0;
     cursor: pointer;
+    position: absolute;
+    z-index: 1;
   }
 
   input:checked + .inner-checkbox {
-    background-color: #b8b9ba;
     &:after {
-      color: white;
+      color: grey;
       position: absolute;
-      top: -4px;
-      left: 1px;
+      top: -5px;
+      left: 0px;
+      font-size: 16px;
       content: "✔";
-      transition: all 0.2s;
     }
-  }
-
-  position: relative;
-  .inner-checkbox {
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    top: 3px;
-    left: 1px;
-    border: 1px solid #828484;
-    border-radius: 4px;
-    background-color: white;
-    z-index: -1;
   }
 `;
 
@@ -42,7 +40,6 @@ const Checkbox = React.forwardRef(
   ({ checked, onChange }: Props, ref: Ref<HTMLInputElement>) => {
     return (
       <StyledCheckbox>
-        
         <input
           ref={ref}
           type="checkbox"

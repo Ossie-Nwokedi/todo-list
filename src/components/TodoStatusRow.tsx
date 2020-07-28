@@ -9,7 +9,7 @@ const Container = styled.div`
   margin-bottom: 10px;
   padding-left: 5px;
   color: #a1a1a1;
-  font-size: 13px;
+  font-size: 14px;
 `;
 
 type Props = {

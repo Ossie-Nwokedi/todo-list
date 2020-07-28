@@ -6,17 +6,39 @@ import Todo from "../models/Todo";
 import useEditTodo from "../hooks/useEditTodo";
 import { selectTodo } from "../Actions";
 import Checkbox from "./Checkbox";
+import DeleteButton from "./DeleteButton";
+
+type ContainerProp = {
+  selected: boolean;
+};
 
 const Container = styled.div`
   display: flex;
   align-items: center;
-  padding: 5px 0 5px 0;
+  padding: 0 5px 0 5px;
+
+  :hover {
+    background-color: #eef1f0;
+  }
+
+  background-color: ${(props: ContainerProp) =>
+    props.selected ? "#E6EDEC" : "transparent"};
 `;
 
 const TitleInput = styled.input`
   border: none;
+  outline: none;
+  margin-right: 5px;
   flex: 1;
+  background-color: transparent;
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  border-bottom: 1px solid #eef1f0;
+  width: 100%;
   margin-left: 10px;
+  padding: 7px 0 7px 0;
 `;
 
 type Props = {
@@ -47,12 +69,12 @@ const TaskRow: FunctionComponent<Props> = ({ todo, isSelected }) => {
   };
 
   return (
-    <Container onClick={onClickTodo}>
+    <Container onClick={onClickTodo} selected={isSelected}>
       <Checkbox ref={checkBoxRef} checked={todo.completed} onChange={toggle} />
-      <TitleInput value={todo.title} onChange={onTitleChanged} />
-      <button ref={deleteButtonRef} onClick={remove}>
-        X
-      </button>
+      <TitleContainer>
+        <TitleInput value={todo.title} onChange={onTitleChanged} />
+        <DeleteButton ref={deleteButtonRef} onClick={remove} />
+      </TitleContainer>
     </Container>
   );
 };

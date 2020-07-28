@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useRef } from "react";
+import React, { FunctionComponent } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
@@ -6,6 +6,7 @@ import ITodo from "../models/ITodo";
 import IState from "../models/IState";
 import useEditTodo from "../hooks/useEditTodo";
 import Checkbox from "./Checkbox";
+import DeleteButton from "./DeleteButton";
 
 const Container = styled.div`
   height: 100%;
@@ -16,36 +17,42 @@ const Container = styled.div`
 
 const TitleContainer = styled.div`
   display: flex;
-  align-content: center; 
+  align-items: center;
+  margin-bottom: 20px;
 `;
 
 const TitleInput = styled.input`
+  outline: none;
   margin-left: 10px;
   padding: 0;
   padding-left: 10px;
   border: none;
   border-left: 1px solid #969899;
-  margin-bottom: 20px;
   font-size: 18px;
   font-weight: bold;
+  width: 100%;
 `;
 
 const DescriptionBox = styled.textarea`
+  outline: none;
   border: none;
   display: block;
   width: 100%;
   resize: none;
   flex: 1;
   font-family: "arial";
-  
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eef1f0;
+
   ::placeholder {
     color: #969899;
     font-size: 14px;
   }
 `;
 
-const DeleteButton = styled.button`
+const DeleteTodoButton = styled(DeleteButton)`
   align-self: flex-end;
+  margin-bottom: 20px;
 `;
 
 type Props = {
@@ -86,7 +93,7 @@ const TodoDetail: FunctionComponent<Props> = ({ todo, numTodos }) => {
         value={todo.description}
         onChange={onDescriptionChange}
       />
-      <DeleteButton onClick={remove}>X</DeleteButton>
+      <DeleteTodoButton onClick={remove} />
     </Container>
   );
 };

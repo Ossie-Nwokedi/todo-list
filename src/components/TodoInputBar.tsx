@@ -14,7 +14,6 @@ const Container = styled.div`
   height: 35px;
   padding: 0 5px 0 5px;
   margin-bottom: 12px;
-
   :hover {
     border: 1px solid #7888bf;
   }
@@ -25,6 +24,7 @@ const Container = styled.div`
 `;
 
 const InputField = styled.input`
+  outline: none;
   width: 100%;
   height: 25px;
   align-self: center;
@@ -53,6 +53,7 @@ const TodoInputBar = () => {
   return (
     <Container>
       <InputField
+        autoFocus
         placeholder="What would you like to do?"
         onKeyUp={onKeyPressUp}
         onChange={onChangeTitle}

@@ -20,7 +20,7 @@ const reducer = (state: IState = initialState, action: any) => {
       return {
         ...state,
         selectedTodo: action.todo.id,
-        todos: [...state.todos, action.todo],
+        todos: [action.todo, ...state.todos],
       };
 
     case TOGGLE_TODO: {
