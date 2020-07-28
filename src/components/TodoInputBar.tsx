@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, FunctionComponent, useEffect, useRef } from "react";
+import { useDispatch, connect } from "react-redux";
 import styled from "styled-components";
 
 import { addTodo } from "../Actions";
+import IState from "../models/IState";
 
 const Container = styled.div`
   width: 100%;
@@ -14,7 +15,8 @@ const Container = styled.div`
   height: 35px;
   padding: 0 5px 0 5px;
   margin-bottom: 10px;
-  :hover, :focus-within {
+  :hover,
+  :focus-within {
     border: 1px solid #969899;
   }
 `;
@@ -31,9 +33,21 @@ const InputField = styled.input`
   }
 `;
 
-const TodoInputBar = () => {
+type Props = {
+  numTodos: number;
+};
+
+const TodoInputBar: FunctionComponent<Props> = ({ numTodos }) => {
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    // Focus input field if there are no more todos
+    if (numTodos === 0) {
+        inputRef?.current?.focus();
+    }
+  }, [numTodos]);
 
   const onChangeTitle = (event: any) => {
     setTitle(event.target.value);
@@ -49,7 +63,7 @@ const TodoInputBar = () => {
   return (
     <Container>
       <InputField
-        autoFocus
+        ref={inputRef}
         placeholder="What would you like to do?"
         onKeyUp={onKeyPressUp}
         onChange={onChangeTitle}
@@ -59,4 +73,8 @@ const TodoInputBar = () => {
   );
 };
 
-export default TodoInputBar;
+const mapState = (state: IState) => {
+  return { numTodos: state.todos.length };
+};
+
+export default connect(mapState)(TodoInputBar);
