@@ -11,7 +11,8 @@ const TodoContainer = styled.div`
   margin: 40px auto;
   max-width: 1024px;
   height: 500px;
-  border: 1px solid black;
+  border: 1px solid #969899;
+  border-radius: 10px;
 `;
 
 const LeftPanel = styled.div`
@@ -24,7 +25,7 @@ const LeftPanel = styled.div`
 const Divider = styled.div`
   width: 1px;
   margin: 0 10px 0 10px;
-  border-left: 1px solid #eef1f0;
+  border-left: 1px solid #969899;
 `;
 
 const RightPanel = styled.div`

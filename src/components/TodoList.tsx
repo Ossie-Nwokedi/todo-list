@@ -13,6 +13,15 @@ const Container = styled.div`
   overflow-y: auto;
 `;
 
+const NoTodosContainer = styled.div`
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #969899;
+`;
+
 type Props = {
   todos: Todo[];
   selectedTodo: string;
@@ -20,10 +29,15 @@ type Props = {
 
 const TodoList: FunctionComponent<Props> = ({ todos, selectedTodo }) => {
   const rows: Array<ReactElement> = [];
-  let completed: any = null;
+  let renderedCompleteds: boolean = false;
 
   if (todos.length === 0) {
-    return <span>Hurrah! You have nothing to do!</span>;
+    return (
+      <NoTodosContainer>
+        <h2>No tasks for today!</h2>
+        <span>Put your feet up and relax 😎</span>
+      </NoTodosContainer>
+    );
   }
 
   // sort by completed/uncompleted
@@ -32,10 +46,9 @@ const TodoList: FunctionComponent<Props> = ({ todos, selectedTodo }) => {
   );
 
   todos.forEach((todo) => {
-    if (completed !== todo.completed) {
-      completed = todo.completed;
-      const status = completed ? "Completed" : "To do";
-      rows.push(<TodoStatusRow key={status} status={status} />);
+    if (todo.completed && !renderedCompleteds) {
+      renderedCompleteds = true;
+      rows.push(<TodoStatusRow key="completed" status="Completed" />);
     }
     rows.push(
       <TaskRow

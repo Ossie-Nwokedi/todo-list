@@ -6,7 +6,7 @@ const Container = styled.div`
   align-items: center;
   height: 25px;
   background-color: rgba(173, 225, 198, 0.2);
-  margin-bottom: 10px;
+  margin: 10px 0 10px 0;
   padding-left: 5px;
   color: #a1a1a1;
   font-size: 14px;

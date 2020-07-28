@@ -4,6 +4,7 @@ import styled from "styled-components";
 const StyledCheckbox = styled.div`
   width: 15px;
   height: 15px;
+  min-width:15px;
   top: 0;
   border: 1px solid #babcbc;
   border-radius: 4px;

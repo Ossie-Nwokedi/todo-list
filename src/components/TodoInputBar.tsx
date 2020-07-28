@@ -13,13 +13,9 @@ const Container = styled.div`
   border-radius: 5px;
   height: 35px;
   padding: 0 5px 0 5px;
-  margin-bottom: 12px;
-  :hover {
-    border: 1px solid #7888bf;
-  }
-
-  :focus-within {
-    border: 1px solid #7888bf;
+  margin-bottom: 10px;
+  :hover, :focus-within {
+    border: 1px solid #969899;
   }
 `;
 

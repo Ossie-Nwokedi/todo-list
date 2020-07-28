@@ -5,16 +5,19 @@ const DeleteButton = styled.button`
   background: none;
   cursor: pointer;
   font-size: 18px;
-  width: 20x;
-  height: 20px;
+  width: 20px;
+  height: 25px;
   padding: 0;
+  border-radius: 5px;
   outline: none;
+  color: #aaaaaa;
   :before {
     content: '🗑';
   }
 
-  :hover {
-    background-color: #eef1f0;
+  :hover, :focus {
+    transition: 600ms;
+    color:black;
   }
 `;
 

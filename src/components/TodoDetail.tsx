@@ -42,7 +42,7 @@ const DescriptionBox = styled.textarea`
   flex: 1;
   font-family: "arial";
   margin-bottom: 20px;
-  border-bottom: 1px solid #eef1f0;
+  border-bottom: 1px solid #969899;
 
   ::placeholder {
     color: #969899;
@@ -53,6 +53,15 @@ const DescriptionBox = styled.textarea`
 const DeleteTodoButton = styled(DeleteButton)`
   align-self: flex-end;
   margin-bottom: 20px;
+`;
+
+const NoSelectionContainer = styled.div`
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #969899;
 `;
 
 type Props = {
@@ -78,7 +87,7 @@ const TodoDetail: FunctionComponent<Props> = ({ todo, numTodos }) => {
   }
 
   if (!todo) {
-    return <span>click on a todo to see its details</span>;
+    return <NoSelectionContainer>Click on a todo to see its details 📝</NoSelectionContainer>;
   }
 
   return (
@@ -93,6 +102,7 @@ const TodoDetail: FunctionComponent<Props> = ({ todo, numTodos }) => {
         value={todo.description}
         onChange={onDescriptionChange}
       />
+
       <DeleteTodoButton onClick={remove} />
     </Container>
   );
