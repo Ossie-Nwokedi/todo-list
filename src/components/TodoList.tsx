@@ -27,13 +27,13 @@ type Props = {
   selectedTodo: string;
 };
 
-const TodoList: FunctionComponent<Props> = ({ todos, selectedTodo }) => {
+export const TodoList: FunctionComponent<Props> = ({ todos, selectedTodo }) => {
   const rows: Array<ReactElement> = [];
   let renderedCompleteds: boolean = false;
 
   if (todos.length === 0) {
     return (
-      <NoTodosContainer>
+      <NoTodosContainer data-testid="no-todos">
         <h2>No tasks for today!</h2>
         <span>
           Put your feet up and relax
@@ -46,22 +46,14 @@ const TodoList: FunctionComponent<Props> = ({ todos, selectedTodo }) => {
   }
 
   // sort by completed/uncompleted
-  todos.sort((a, b) =>
-    a.completed === b.completed ? 0 : a.completed ? 1 : -1
-  );
+  todos.sort((a, b) => (a.completed === b.completed ? 0 : a.completed ? 1 : -1));
 
   todos.forEach((todo) => {
     if (todo.completed && !renderedCompleteds) {
       renderedCompleteds = true;
       rows.push(<TodoStatusRow key="completed" status="Completed" />);
     }
-    rows.push(
-      <TodoRow
-        key={todo.id}
-        todo={todo}
-        isSelected={todo.id === selectedTodo}
-      />
-    );
+    rows.push(<TodoRow key={todo.id} todo={todo} isSelected={todo.id === selectedTodo} />);
   });
 
   return <Container>{rows}</Container>;

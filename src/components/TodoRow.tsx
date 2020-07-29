@@ -30,7 +30,7 @@ const TitleInput = styled.input`
   margin-right: 5px;
   flex: 1;
   background-color: transparent;
-`;
+`; 
 
 const TitleContainer = styled.div`
   display: flex;
@@ -64,7 +64,7 @@ const TodoRow: FunctionComponent<Props> = ({ todo, isSelected }) => {
   };
 
   return (
-    <Container data-testid="container" onClick={onClickTodo} selected={isSelected}>
+    <Container data-testid="todo-row" onClick={onClickTodo} selected={isSelected}>
       <Checkbox ref={checkBoxRef} checked={todo.completed} onChange={toggle} />
       <TitleContainer>
         <TitleInput value={todo.title} onChange={onTitleChanged} />

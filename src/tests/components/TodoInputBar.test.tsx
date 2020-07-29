@@ -1,6 +1,6 @@
 import React from "react";
-import { screen, fireEvent, waitForElement } from "@testing-library/react";
-import TodoInputBar from "../../components/TodoInputBar";
+import { screen, fireEvent, render } from "@testing-library/react";
+import { TodoInputBar } from "../../components/TodoInputBar";
 import renderConnected from "../utils/renderConnected";
 import * as actions from "./../../state/Actions";
 import { createStore } from "redux";
@@ -8,7 +8,7 @@ import reducer from "../../state/Reducer";
 
 describe("<TodoInputBar />", () => {
   test("default rendering", () => {
-    renderConnected(<TodoInputBar />);
+    renderConnected(<TodoInputBar numTodos={0} />);
 
     const input = screen.getByPlaceholderText("What would you like to do?");
     expect(input).toBeInTheDocument();
@@ -18,7 +18,7 @@ describe("<TodoInputBar />", () => {
   test("submits new todo", () => {
     const addTodo = jest.spyOn(actions, "addTodo");
 
-    renderConnected(<TodoInputBar />);
+    renderConnected(<TodoInputBar numTodos={0} />);
     const input = screen.getByPlaceholderText("What would you like to do?");
 
     fireEvent.change(input, { target: { value: "Buy milk" } });
@@ -27,21 +27,17 @@ describe("<TodoInputBar />", () => {
     expect(addTodo).toHaveBeenCalledWith("Buy milk");
   });
 
-  test("sets focus on the input field when no todos exist", async () => {
-    // set up store to have one todo
-    const store = createStore(reducer);
-    const addTodoAction = actions.addTodo("Buy milk");
-    store.dispatch(addTodoAction);
-
-    renderConnected(<TodoInputBar />, { store });
-
-    let input = screen.getByPlaceholderText("What would you like to do?");
-    expect(input).not.toHaveFocus();
-
-    // empty the to do list and assert input field is focused
-    store.dispatch(actions.removeTodo(addTodoAction.todo.id));
-
-    await waitForElement(() => input);
-    expect(input).toHaveFocus();
+  test.each([
+    ["sets", 0],
+    ["does not set", 1],
+  ])("%s focus on the input field when there are %s todos", (_, numTodos) => {
+    renderConnected(<TodoInputBar numTodos={numTodos} />);
+    const input = screen.getByPlaceholderText("What would you like to do?");
+    
+    if (numTodos === 0) {
+      expect(input).toHaveFocus();
+    } else {
+      expect(input).not.toHaveFocus();
+    }
   });
 });

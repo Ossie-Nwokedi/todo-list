@@ -69,10 +69,8 @@ type Props = {
   numTodos: number;
 };
 
-const TodoDetail: FunctionComponent<Props> = ({ todo, numTodos }) => {
-  const { toggle, remove, setTitle, setDescription } = useEditTodo(
-    todo as ITodo
-  );
+export const TodoDetail: FunctionComponent<Props> = ({ todo, numTodos }) => {
+  const { toggle, remove, setTitle, setDescription } = useEditTodo(todo as ITodo);
 
   const onTitleChange = (event: any) => {
     setTitle(event.target.value);
@@ -104,11 +102,7 @@ const TodoDetail: FunctionComponent<Props> = ({ todo, numTodos }) => {
         <TitleInput value={todo.title} onChange={onTitleChange} />
       </TitleContainer>
 
-      <DescriptionBox
-        placeholder="Description"
-        value={todo.description}
-        onChange={onDescriptionChange}
-      />
+      <DescriptionBox placeholder="Description" value={todo.description} onChange={onDescriptionChange} />
 
       <DeleteTodoButton onClick={remove} />
     </Container>
@@ -116,9 +110,7 @@ const TodoDetail: FunctionComponent<Props> = ({ todo, numTodos }) => {
 };
 
 const mapState = (state: IState) => {
-  const index: number = state.todos.findIndex(
-    (todo) => todo.id === state.selectedTodo
-  );
+  const index: number = state.todos.findIndex((todo) => todo.id === state.selectedTodo);
 
   const props = {
     numTodos: state.todos.length,

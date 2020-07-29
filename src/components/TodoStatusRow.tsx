@@ -17,7 +17,7 @@ type Props = {
 };
 
 const TodoStatusRow: FunctionComponent<Props> = ({ status }) => {
-  return <Container>{status}</Container>;
+  return <Container data-testid="status-row">{status}</Container>;
 };
 
 export default TodoStatusRow;

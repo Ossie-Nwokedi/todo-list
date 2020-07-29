@@ -6,62 +6,60 @@ import renderConnected from "../utils/renderConnected";
 import * as actions from "../../state/Actions";
 
 describe("<TodoRow />", () => {
-  describe("Rendering", () => {
-    test("renders all components", () => {
-      const todo = new Todo("Buy Milk");
-      renderConnected(<TodoRow todo={todo} isSelected={false} />);
-      
-      expect(screen.getByRole("checkbox")).toBeInTheDocument();
-      expect(screen.getByRole("textbox")).toBeInTheDocument();
-      expect(screen.getByRole("button")).toBeInTheDocument();
-    });
+  test("renders all components", () => {
+    const todo = new Todo("Buy Milk");
+    renderConnected(<TodoRow todo={todo} isSelected={false} />);
 
-    test("calls action to toggle todo when checkbox is clicked", () => {
-      const toggleAction = jest.spyOn(actions, "toggleTodo");
-      const todo = new Todo("Buy Milk");
+    expect(screen.getByRole("checkbox")).toBeInTheDocument();
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
+    expect(screen.getByRole("button")).toBeInTheDocument();
+  });
 
-      renderConnected(<TodoRow todo={todo} isSelected={false} />);
+  test("calls action to toggle todo when checkbox is clicked", () => {
+    const toggleAction = jest.spyOn(actions, "toggleTodo");
+    const todo = new Todo("Buy Milk");
 
-      const checkbox = screen.getByRole("checkbox");
-      fireEvent.click(checkbox, { target: { value: true } });
+    renderConnected(<TodoRow todo={todo} isSelected={false} />);
 
-      expect(toggleAction).toHaveBeenCalledWith(todo.id);
-    });
+    const checkbox = screen.getByRole("checkbox");
+    fireEvent.click(checkbox, { target: { value: true } });
 
-    test("calls action to update todo title when user updates title", () => {
-      const updateTitleAction = jest.spyOn(actions, "updateTodoTitle");
-      const todo = new Todo("Buy Milk");
+    expect(toggleAction).toHaveBeenCalledWith(todo.id);
+  });
 
-      renderConnected(<TodoRow todo={todo} isSelected={false} />);
+  test("calls action to update todo title when user updates title", () => {
+    const updateTitleAction = jest.spyOn(actions, "updateTodoTitle");
+    const todo = new Todo("Buy Milk");
 
-      const input = screen.getByRole("textbox");
-      fireEvent.change(input, { target: { value: "Buy apples" } });
+    renderConnected(<TodoRow todo={todo} isSelected={false} />);
 
-      expect(updateTitleAction).toHaveBeenCalledWith(todo.id, "Buy apples");
-    });
+    const input = screen.getByRole("textbox");
+    fireEvent.change(input, { target: { value: "Buy apples" } });
 
-    test("calls action to delete todo when user clicks delete button", () => {
-      const removeTodoAction = jest.spyOn(actions, "removeTodo");
-      const todo = new Todo("Buy Milk");
+    expect(updateTitleAction).toHaveBeenCalledWith(todo.id, "Buy apples");
+  });
 
-      renderConnected(<TodoRow todo={todo} isSelected={false} />);
+  test("calls action to delete todo when user clicks delete button", () => {
+    const removeTodoAction = jest.spyOn(actions, "removeTodo");
+    const todo = new Todo("Buy Milk");
 
-      const button = screen.getByRole("button");
-      fireEvent.click(button);
+    renderConnected(<TodoRow todo={todo} isSelected={false} />);
 
-      expect(removeTodoAction).toHaveBeenCalledWith(todo.id);
-    });
+    const button = screen.getByRole("button");
+    fireEvent.click(button);
 
-    test("calls action to select todo as active one when user clicks the row", () => {
-      const selectTodoAction = jest.spyOn(actions, "selectTodo");
-      const todo = new Todo("Buy Milk");
+    expect(removeTodoAction).toHaveBeenCalledWith(todo.id);
+  });
 
-      renderConnected(<TodoRow todo={todo} isSelected={false} />);
+  test("calls action to select todo as active one when user clicks the row", () => {
+    const selectTodoAction = jest.spyOn(actions, "selectTodo");
+    const todo = new Todo("Buy Milk");
 
-      const container = screen.getByTestId("container");
-      fireEvent.click(container);
+    renderConnected(<TodoRow todo={todo} isSelected={false} />);
 
-      expect(selectTodoAction).toHaveBeenCalledWith(todo.id);
-    });
+    const container = screen.getByTestId("todo-row");
+    fireEvent.click(container);
+
+    expect(selectTodoAction).toHaveBeenCalledWith(todo.id);
   });
 });

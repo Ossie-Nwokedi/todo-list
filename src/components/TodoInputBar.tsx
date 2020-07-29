@@ -37,7 +37,7 @@ type Props = {
   numTodos: number;
 };
 
-const TodoInputBar: FunctionComponent<Props> = ({ numTodos }) => {
+export const TodoInputBar: FunctionComponent<Props> = ({ numTodos }) => {
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
   const inputRef = useRef<HTMLInputElement>(null);

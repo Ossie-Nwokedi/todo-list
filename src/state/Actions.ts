@@ -45,7 +45,7 @@ export const updateTodoTitle = (id: string, title: string) => {
   };
 };
 
-export const updateTodoDescripton = (id: string, description: string) => {
+export const updateTodoDescription = (id: string, description: string) => {
   return {
     type: UPDATE_TODO_DESCRIPTION,
     id,
