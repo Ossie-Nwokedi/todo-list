@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Todo from "../models/Todo";
 import useEditTodo from "../hooks/useEditTodo";
-import { selectTodo } from "../Actions";
+import { selectTodo } from "../state/Actions";
 import Checkbox from "./Checkbox";
 import DeleteButton from "./DeleteButton";
 

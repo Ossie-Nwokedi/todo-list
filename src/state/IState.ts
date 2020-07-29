@@ -1,4 +1,4 @@
-import Todo from "./Todo";
+import Todo from "../models/Todo";
 
 export default interface IState {
   selectedTodo: string;

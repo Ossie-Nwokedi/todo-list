@@ -1,4 +1,4 @@
-import Todo from "./models/Todo";
+import Todo from "../models/Todo";
 
 /* Action types */
 export const ADD_TODO: string = "ADD_TODO";

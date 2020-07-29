@@ -5,7 +5,7 @@ import styled from "styled-components";
 import TodoStatusRow from "./TodoStatusRow";
 import TaskRow from "./TodoRow";
 import Todo from "../models/ITodo";
-import IState from "../models/IState";
+import IState from "../state/IState";
 
 const Container = styled.div`
   width: 100%;
@@ -35,7 +35,12 @@ const TodoList: FunctionComponent<Props> = ({ todos, selectedTodo }) => {
     return (
       <NoTodosContainer>
         <h2>No tasks for today!</h2>
-        <span>Put your feet up and relax 😎</span>
+        <span>
+          Put your feet up and relax
+          <span role="img" aria-label="smiley face">
+            😎
+          </span>
+        </span>
       </NoTodosContainer>
     );
   }

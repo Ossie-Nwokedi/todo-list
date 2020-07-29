@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 import ITodo from "../models/ITodo";
-import IState from "../models/IState";
+import IState from "../state/IState";
 import useEditTodo from "../hooks/useEditTodo";
 import Checkbox from "./Checkbox";
 import DeleteButton from "./DeleteButton";
@@ -87,7 +87,14 @@ const TodoDetail: FunctionComponent<Props> = ({ todo, numTodos }) => {
   }
 
   if (!todo) {
-    return <NoSelectionContainer>Click on a todo to see its details 📝</NoSelectionContainer>;
+    return (
+      <NoSelectionContainer>
+        Click on a todo to see its details{" "}
+        <span role="img" aria-label="paper">
+          📝
+        </span>
+      </NoSelectionContainer>
+    );
   }
 
   return (

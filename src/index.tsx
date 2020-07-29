@@ -5,8 +5,8 @@ import { Provider } from "react-redux";
 
 import "./index.css";
 import App from "./App";
-import reducer from "./Reducer";
-import { addTodo, selectTodo } from "./Actions";
+import reducer from "./state/Reducer";
+import { addTodo, selectTodo } from "./state/Actions";
 
 const win = window as any;
 

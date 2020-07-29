@@ -2,8 +2,8 @@ import React, { useState, FunctionComponent, useEffect, useRef } from "react";
 import { useDispatch, connect } from "react-redux";
 import styled from "styled-components";
 
-import { addTodo } from "../Actions";
-import IState from "../models/IState";
+import { addTodo } from "../state/Actions";
+import IState from "../state/IState";
 
 const Container = styled.div`
   width: 100%;

@@ -1,13 +1,6 @@
-import {
-  ADD_TODO,
-  TOGGLE_TODO,
-  SELECT_TODO,
-  REMOVE_TODO,
-  UPDATE_TODO_TITLE,
-  UPDATE_TODO_DESCRIPTION,
-} from "./Actions";
-import IState from "./models/IState";
-import Todo from "./models/Todo";
+import { ADD_TODO, TOGGLE_TODO, SELECT_TODO, REMOVE_TODO, UPDATE_TODO_TITLE, UPDATE_TODO_DESCRIPTION } from "./Actions";
+import IState from "./IState";
+import Todo from "../models/Todo";
 
 const initialState: IState = {
   selectedTodo: "",
@@ -24,9 +17,8 @@ const reducer = (state: IState = initialState, action: any) => {
       };
 
     case TOGGLE_TODO: {
-      const index: number = state.todos.findIndex(
-        (todo) => todo.id === action.id
-      );
+      const index: number = state.todos.findIndex((todo) => todo.id === action.id);
+
       if (index > -1) {
         const todo: Todo = state.todos[index];
         const todos = [...state.todos];
@@ -48,15 +40,15 @@ const reducer = (state: IState = initialState, action: any) => {
       };
 
     case REMOVE_TODO: {
-      const index: number = state.todos.findIndex(
-        (todo) => todo.id === action.id
-      );
+      const index: number = state.todos.findIndex((todo) => todo.id === action.id);
 
       if (index > -1) {
         const todos = [...state.todos];
-        todos.splice(index, 1);
+        const removedTodo = todos.splice(index, 1);
+        const selectedTodo = state.selectedTodo === removedTodo[0].id ? "" : state.selectedTodo;
         return {
           ...state,
+          selectedTodo,
           todos,
         };
       } else {
@@ -65,9 +57,7 @@ const reducer = (state: IState = initialState, action: any) => {
     }
 
     case UPDATE_TODO_TITLE: {
-      const index: number = state.todos.findIndex(
-        (todo) => todo.id === action.id
-      );
+      const index: number = state.todos.findIndex((todo) => todo.id === action.id);
 
       if (index > -1) {
         const todo: Todo = state.todos[index];
@@ -84,9 +74,7 @@ const reducer = (state: IState = initialState, action: any) => {
     }
 
     case UPDATE_TODO_DESCRIPTION: {
-      const index: number = state.todos.findIndex(
-        (todo) => todo.id === action.id
-      );
+      const index: number = state.todos.findIndex((todo) => todo.id === action.id);
 
       if (index > -1) {
         const todo: Todo = state.todos[index];

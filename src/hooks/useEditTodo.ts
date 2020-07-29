@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 
 import Todo from "../models/Todo";
-import { toggleTodo, removeTodo, updateTodoTitle, updateTodoDescripton } from "../Actions";
+import { toggleTodo, removeTodo, updateTodoTitle, updateTodoDescripton } from "../state/Actions";
 
 const useEditTodo = (todo: Todo) => {
   const dispatch = useDispatch();
