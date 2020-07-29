@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 import TodoStatusRow from "./TodoStatusRow";
-import TaskRow from "./TodoRow";
+import TodoRow from "./TodoRow";
 import Todo from "../models/ITodo";
 import IState from "../state/IState";
 
@@ -56,7 +56,7 @@ const TodoList: FunctionComponent<Props> = ({ todos, selectedTodo }) => {
       rows.push(<TodoStatusRow key="completed" status="Completed" />);
     }
     rows.push(
-      <TaskRow
+      <TodoRow
         key={todo.id}
         todo={todo}
         isSelected={todo.id === selectedTodo}

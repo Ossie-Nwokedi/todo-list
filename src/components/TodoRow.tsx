@@ -21,8 +21,7 @@ const Container = styled.div`
     background-color: #eef1f0;
   }
 
-  background-color: ${(props: ContainerProp) =>
-    props.selected ? "#E6EDEC" : "transparent"};
+  background-color: ${(props: ContainerProp) => (props.selected ? "#E6EDEC" : "transparent")};
 `;
 
 const TitleInput = styled.input`
@@ -46,7 +45,7 @@ type Props = {
   isSelected: boolean;
 };
 
-const TaskRow: FunctionComponent<Props> = ({ todo, isSelected }) => {
+const TodoRow: FunctionComponent<Props> = ({ todo, isSelected }) => {
   const dispatch = useDispatch();
 
   const { setTitle, toggle, remove } = useEditTodo(todo);
@@ -59,17 +58,13 @@ const TaskRow: FunctionComponent<Props> = ({ todo, isSelected }) => {
   };
 
   const onClickTodo = (event: any) => {
-    if (
-      event.target !== checkBoxRef.current &&
-      event.target !== deleteButtonRef.current &&
-      !isSelected
-    ) {
+    if (event.target !== checkBoxRef.current && event.target !== deleteButtonRef.current && !isSelected) {
       dispatch(selectTodo(todo.id));
     }
   };
 
   return (
-    <Container onClick={onClickTodo} selected={isSelected}>
+    <Container data-testid="container" onClick={onClickTodo} selected={isSelected}>
       <Checkbox ref={checkBoxRef} checked={todo.completed} onChange={toggle} />
       <TitleContainer>
         <TitleInput value={todo.title} onChange={onTitleChanged} />
@@ -79,4 +74,4 @@ const TaskRow: FunctionComponent<Props> = ({ todo, isSelected }) => {
   );
 };
 
-export default TaskRow;
+export default TodoRow;
