@@ -13,23 +13,23 @@ const Container = styled.div`
   border: 1px solid transparent;
   border-radius: 5px;
   height: 35px;
-  padding: 0 5px 0 5px;
   margin-bottom: 10px;
-  :hover,
-  :focus-within {
-    border: 1px solid #969899;
-  }
 `;
 
 const InputField = styled.input`
   outline: none;
   width: 100%;
-  height: 25px;
+  height: 100%;
+  padding: 0 5px 0 5px;
   align-self: center;
-  border: none;
+  border: 1px solid transparent;
   background-color: transparent;
   ::placeholder {
     color: #969899;
+  }
+  :hover, :focus {
+    border: 1px solid #969899;
+    border-radius: 5px;
   }
 `;
 
@@ -45,7 +45,7 @@ export const TodoInputBar: FunctionComponent<Props> = ({ numTodos }) => {
   useEffect(() => {
     // Focus input field if there are no more todos
     if (numTodos === 0) {
-        inputRef?.current?.focus();
+      inputRef?.current?.focus();
     }
   }, [numTodos]);
 
@@ -62,13 +62,7 @@ export const TodoInputBar: FunctionComponent<Props> = ({ numTodos }) => {
 
   return (
     <Container>
-      <InputField
-        ref={inputRef}
-        placeholder="What would you like to do?"
-        onKeyUp={onKeyPressUp}
-        onChange={onChangeTitle}
-        value={title}
-      />
+      <InputField ref={inputRef} placeholder="What would you like to do?" onKeyUp={onKeyPressUp} onChange={onChangeTitle} value={title} />
     </Container>
   );
 };

@@ -12,7 +12,7 @@ describe("<TodoRow />", () => {
 
     expect(screen.getByRole("checkbox")).toBeInTheDocument();
     expect(screen.getByRole("textbox")).toBeInTheDocument();
-    expect(screen.getByRole("button")).toBeInTheDocument();
+    expect(screen.getAllByRole("button")).toHaveLength(2);
   });
 
   test("calls action to toggle todo when checkbox is clicked", () => {
@@ -45,7 +45,7 @@ describe("<TodoRow />", () => {
 
     renderConnected(<TodoRow todo={todo} isSelected={false} />);
 
-    const button = screen.getByRole("button");
+    const button = screen.getByTestId("delete-button");
     fireEvent.click(button);
 
     expect(removeTodoAction).toHaveBeenCalledWith(todo.id);

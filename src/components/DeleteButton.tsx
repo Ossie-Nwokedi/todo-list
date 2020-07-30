@@ -10,12 +10,13 @@ const DeleteButton = styled.button`
   padding: 0;
   border-radius: 5px;
   outline: none;
-  color: #aaaaaa;
+  color: #333333;
   :before {
     content: '🗑';
   }
 
   :hover, :focus {
+    background: #eeeeee;
     transition: 600ms;
     color:black;
   }

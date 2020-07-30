@@ -16,9 +16,15 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   padding: 0 5px 0 5px;
+  cursor: pointer;
+  border: 1px solid transparent;
 
   :hover {
     background-color: #eef1f0;
+  }
+
+  :focus {
+    border: 1px solid #eef1f0;
   }
 
   background-color: ${(props: ContainerProp) => (props.selected ? "#E6EDEC" : "transparent")};
@@ -30,7 +36,7 @@ const TitleInput = styled.input`
   margin-right: 5px;
   flex: 1;
   background-color: transparent;
-`; 
+`;
 
 const TitleContainer = styled.div`
   display: flex;
@@ -63,12 +69,18 @@ const TodoRow: FunctionComponent<Props> = ({ todo, isSelected }) => {
     }
   };
 
+  const onKeydown = (event: any) => {
+    if (event.keyCode === 13) {
+      remove();
+    }
+  };
+
   return (
-    <Container data-testid="todo-row" onClick={onClickTodo} selected={isSelected}>
-      <Checkbox ref={checkBoxRef} checked={todo.completed} onChange={toggle} />
+    <Container data-testid="todo-row" onClick={onClickTodo} onKeyDown={onKeydown} selected={isSelected} role="button" tabIndex={0}>
+      <Checkbox ref={checkBoxRef} checked={todo.completed} onChange={toggle} title="Toggle completed"/>
       <TitleContainer>
         <TitleInput value={todo.title} onChange={onTitleChanged} />
-        <DeleteButton ref={deleteButtonRef} onClick={remove} />
+        <DeleteButton data-testid="delete-button" ref={deleteButtonRef} onClick={remove} onKeyDown={onKeydown} tabIndex={0} title="Delete todo" />
       </TitleContainer>
     </Container>
   );

@@ -31,6 +31,9 @@ const TitleInput = styled.input`
   font-size: 18px;
   font-weight: bold;
   width: 100%;
+  :focus {
+    background: #f8f8f8;
+  }
 `;
 
 const DescriptionBox = styled.textarea`
@@ -48,6 +51,10 @@ const DescriptionBox = styled.textarea`
     color: #969899;
     font-size: 14px;
   }
+
+  :focus {
+    border: 1px solid #eef1f0;
+  }
 `;
 
 const DeleteTodoButton = styled(DeleteButton)`
@@ -61,7 +68,9 @@ const NoSelectionContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #969899;
+  color: gray;
+  font-weight: bold;
+  font-size: 14px;
 `;
 
 type Props = {
@@ -78,6 +87,12 @@ export const TodoDetail: FunctionComponent<Props> = ({ todo, numTodos }) => {
 
   const onDescriptionChange = (event: any) => {
     setDescription(event.target.value);
+  };
+
+  const onKeyPressDown = (event: any) => {
+    if (event.keyCode === 13) {
+      remove();
+    }
   };
 
   if (numTodos === 0) {
@@ -98,13 +113,13 @@ export const TodoDetail: FunctionComponent<Props> = ({ todo, numTodos }) => {
   return (
     <Container>
       <TitleContainer>
-        <Checkbox checked={todo.completed} onChange={toggle} />
+        <Checkbox checked={todo.completed} onChange={toggle} title="Toggle completed" />
         <TitleInput value={todo.title} onChange={onTitleChange} />
       </TitleContainer>
 
       <DescriptionBox placeholder="Description" value={todo.description} onChange={onDescriptionChange} />
 
-      <DeleteTodoButton onClick={remove} />
+      <DeleteTodoButton onClick={remove} onKeyDown={onKeyPressDown} tabIndex={0} />
     </Container>
   );
 };
