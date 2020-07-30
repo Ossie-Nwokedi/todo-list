@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { screen, fireEvent } from "@testing-library/react";
 import TodoRow from "../../components/TodoRow";
 import Todo from "../../models/Todo";
 import renderConnected from "../utils/renderConnected";

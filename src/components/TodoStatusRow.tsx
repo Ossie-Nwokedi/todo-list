@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  display:flex;
+  display: flex;
   align-items: center;
   height: 25px;
   background-color: rgba(173, 225, 198, 0.2);

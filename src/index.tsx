@@ -7,12 +7,7 @@ import "./index.css";
 import App from "./App";
 import reducer from "./state/Reducer";
 
-const win = window as any;
-
-const store = createStore(
-  reducer,
-  win.__REDUX_DEVTOOLS_EXTENSION__ && win.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const store = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>

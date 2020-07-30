@@ -1,7 +1,5 @@
 import reducer from "../../state/Reducer";
 import { ADD_TODO, TOGGLE_TODO, SELECT_TODO, REMOVE_TODO, UPDATE_TODO_TITLE, UPDATE_TODO_DESCRIPTION } from "../../state/Actions";
-import Todo from "../../models/Todo";
-import { title } from "process";
 
 describe("Reducer", () => {
   const createTodo = (id: string, title: string, description: string, completed: boolean) => ({

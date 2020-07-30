@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { screen, fireEvent } from "@testing-library/react";
 
 import { TodoDetail } from "../../components/TodoDetail";
 import renderConnected from "../utils/renderConnected";
@@ -8,12 +8,6 @@ import * as actions from "../../state/Actions";
 
 describe("<TodoDetail />", () => {
   describe("Rendering", () => {
-    test("renders nothing when there are no todos", () => {
-      renderConnected(<TodoDetail todo={null} numTodos={0} />);
-      // expect(screen).
-      // screen.debug();
-    });
-
     test("renders message when no todo is selected", () => {
       renderConnected(<TodoDetail todo={null} numTodos={1} />);
       expect(screen.getByText("Click on a todo to see its details")).toBeInTheDocument();

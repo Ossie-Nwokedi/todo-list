@@ -1,10 +1,8 @@
 import React from "react";
-import { screen, fireEvent, render } from "@testing-library/react";
+import { screen, fireEvent } from "@testing-library/react";
 import { TodoInputBar } from "../../components/TodoInputBar";
 import renderConnected from "../utils/renderConnected";
 import * as actions from "./../../state/Actions";
-import { createStore } from "redux";
-import reducer from "../../state/Reducer";
 
 describe("<TodoInputBar />", () => {
   test("default rendering", () => {
@@ -33,7 +31,7 @@ describe("<TodoInputBar />", () => {
   ])("%s focus on the input field when there are %s todos", (_, numTodos) => {
     renderConnected(<TodoInputBar numTodos={numTodos} />);
     const input = screen.getByPlaceholderText("What would you like to do?");
-    
+
     if (numTodos === 0) {
       expect(input).toHaveFocus();
     } else {

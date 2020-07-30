@@ -27,7 +27,8 @@ const InputField = styled.input`
   ::placeholder {
     color: #969899;
   }
-  :hover, :focus {
+  :hover,
+  :focus {
     border: 1px solid #969899;
     border-radius: 5px;
   }
