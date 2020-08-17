@@ -63,7 +63,7 @@ export const TodoInputBar: FunctionComponent<Props> = ({ numTodos }) => {
 
   return (
     <Container>
-      <InputField ref={inputRef} placeholder="What would you like to do?" onKeyUp={onKeyPressUp} onChange={onChangeTitle} value={title} />
+      <InputField name="newTodo" ref={inputRef} placeholder="What would you like to do?" onKeyUp={onKeyPressUp} onChange={onChangeTitle} value={title} />
     </Container>
   );
 };

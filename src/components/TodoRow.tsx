@@ -79,12 +79,12 @@ const TodoRow: FunctionComponent<Props> = ({ todo, isSelected }) => {
     <Container data-testid="todo-row" onClick={onClickTodo} onKeyDown={onKeydown} selected={isSelected} role="button" tabIndex={0}>
       <Checkbox ref={checkBoxRef} checked={todo.completed} onChange={toggle} title="Toggle completed" />
       <TitleContainer>
-        <TitleInput value={todo.title} onChange={onTitleChanged} />
+        <TitleInput name="todoItem" value={todo.title} onChange={onTitleChanged} />
         <DeleteButton
           data-testid="delete-button"
           ref={deleteButtonRef}
           onClick={remove}
-          onKeyDown={onKeydown}
+          // onKeyDown={onKeydown}
           tabIndex={0}
           title="Delete todo"
         />
